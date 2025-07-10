@@ -925,3 +925,4 @@ export const setConfig = (env: Record<string, any>) => {
     envs = Object.assign(process.env, env);
     calculateValue();
 };
+export const ALLOW_HOSTS = ['*'];
