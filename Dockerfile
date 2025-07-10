@@ -19,10 +19,14 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 # 设置 Puppeteer 使用的 Chrome 路径
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome
 
-# 安装项目依赖
+# 设置工作目录并复制代码
 WORKDIR /app
 COPY . .
+
+# 安装依赖并构建项目
 RUN npm install && npm run build
 
-# 启动服务
-CMD ["npm", "start"]
+# 启动服务（改为 shell 形式避免 Render sh 找不到）
+CMD npm start
+
+
