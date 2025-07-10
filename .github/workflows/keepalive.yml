@@ -1,0 +1,18 @@
+name: Keep RSSHub Alive
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 每小时整点执行一次，可改为 "30 5,17 * * *" 表示每天 05:30 和 17:30 各执行一次
+  workflow_dispatch:     # 支持手动运行
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl ping RSSHub routes
+        run: |
+          curl -sSf https://rsshub0709.onrender.com/bilibili/user/d2b7f83bd62d9e99d3b74f85a3e82363
+          curl -sSf https://rsshub0709.onrender.com/zhihu/daily
+          curl -sSf https://rsshub0709.onrender.com/weixin/mp/homepage/MzA5MjAwNjc1MQ==/1
+          curl -sSf https://rsshub0709.onrender.com/36kr/newsflashes
+
